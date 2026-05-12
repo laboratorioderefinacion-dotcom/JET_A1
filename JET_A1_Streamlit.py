@@ -19,12 +19,10 @@ import tempfile
 st.set_page_config(page_title="JET A1 - Informe", layout="wide")
 
 BASE_DIR = Path(__file__).parent
-RUTA_PLANTILLAS = BASE_DIR / "templates"
-RUTA_DATA = BASE_DIR / "data"
 
-PLANTILLA_OUA = RUTA_PLANTILLAS / "JET_A1.docx"
-PLANTILLA_SIN_OUA = RUTA_PLANTILLAS / "JET_A1_SIN_OUA.docx"
-RUTA_ALCANCE = RUTA_DATA / "alcance_acreditacion_JET.csv"
+PLANTILLA_OUA = BASE_DIR / "JET_A1.docx"
+PLANTILLA_SIN_OUA = BASE_DIR / "JET_A1_SIN_OUA.docx"
+RUTA_ALCANCE = BASE_DIR / "alcance_acreditacion_JET.csv"
 
 # =========================
 # HELPERS
