@@ -487,8 +487,14 @@ elif norma_aromaticos == "ASTM_D_6379":
 # =========================
 # MERGE DICT (igual a tu template)
 # =========================
+
+# Nombre del archivo CSV (sin extensión)
+nombre_csv = Path(lims_file.name).stem  # ej: "12345" si el archivo es "12345.csv"
+
 tanque_short = str(celda_tanque)[3:] if isinstance(celda_tanque, str) and len(str(celda_tanque)) >= 4 else str(celda_tanque)
-nombre_archivo_nuevo = f"{celda_lims} TK {tanque_short} JET A1"
+
+# Ahora el Word se llama con el nombre del CSV, no con el LIMS
+nombre_archivo_nuevo = f"{nombre_csv} TK {tanque_short} JET A1"
 
 merge = {
     "informe": str(celda_lims),
@@ -624,12 +630,6 @@ if plantilla == PLANTILLA_OUA:
 # BOTÓN GENERAR
 # =========================
 st.subheader("📄 Generar informe")
-
-colA, colB = st.columns([1, 2])
-with colA:
-    st.write("Plantilla seleccionada:", plantilla.name)
-with colB:
-    st.write("Normas acreditadas:", ", ".join(normas_acreditadas) if normas_acreditadas else "Ninguna")
 
 if st.button("✅ Generar Word", type="primary"):
     try:
