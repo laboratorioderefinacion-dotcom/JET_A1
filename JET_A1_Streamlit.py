@@ -497,7 +497,7 @@ tanque_short = str(celda_tanque)[3:] if isinstance(celda_tanque, str) and len(st
 nombre_archivo_nuevo = f"{nombre_csv} TK {tanque_short} JET A1"
 
 merge = {
-    "informe": str(celda_lims),
+    "informe": str(nombre_csv),
     "tanque": tanque_short,
     "fecha_aprob": celda_fecha_aprob.replace("-", "/"),
     "fecha_informe": celda_fecha_informe_2,
