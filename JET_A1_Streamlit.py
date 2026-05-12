@@ -629,9 +629,8 @@ if plantilla == PLANTILLA_OUA:
 # =========================
 # BOTÓN GENERAR
 # =========================
-st.subheader("📄 Generar informe")
 
-if st.button("✅ Generar Word", type="primary"):
+if st.button("✅ Generar informe", type="primary"):
     try:
         doc_bytes = generate_docx_bytes(plantilla, merge)
         st.success("Informe generado correctamente.")
