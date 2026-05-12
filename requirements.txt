@@ -1,0 +1,6 @@
+
+streamlit
+pandas
+numpy
+python-docx
+docx-mailmerge
