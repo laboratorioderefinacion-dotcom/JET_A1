@@ -475,7 +475,7 @@ if not sub_obs.empty and pd.notna(sub_obs.values[0]):
     fecha_MSEP = re.search(r"MSEP.*?(\d{1,2}/\d{1,2}/\d{2,4})", observaciones, re.IGNORECASE)
     if fecha_MSEP:
         fecha_MSEP_2 = fecha_MSEP.group(1)
-        obs = f"(4) La conductividad eléctrica y el índice de separación (MSEP) fueron analizados sobre muestra extraída el {fecha_MSEP_2}."
+        obs = f"(4) La conductividad eléctrica y el índice de separación de agua (MSEP) fueron analizados sobre muestra extraída el {fecha_MSEP_2}."
         rep = "(4)"
 
 # Aromáticos FIA / HPLC
