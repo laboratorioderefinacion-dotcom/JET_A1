@@ -277,6 +277,7 @@ celda_sintetico = extraer_valor_celda_float(df_a, "Componentes sintéticos")
 celda_copros = extraer_valor_celda_float(df_a, "Componentes coprocesados")
 celda_particulado = extraer_valor_celda_float(df_a, "Particulado")
 celda_vol_filt = extraer_valor_celda_float(df_a, "Volumen Filtrado")
+celda_WSI = extraer_valor_celda_float(df_a, "WSI")
 
 densidad = celda_densidad * 1000 if isinstance(celda_densidad, (float, int)) else None
 
@@ -318,6 +319,7 @@ norma_pto_hum = extraer_valor_norma(df_a, "Punto de Humo (método automático)")
 norma_JFTOT = extraer_valor_norma(df_a, "Caída de presión en el filtro")
 norma_gomas = extraer_valor_norma(df_a, "Gomas Existentes")
 norma_MSEP = extraer_valor_norma(df_a, "MSEP A rating")
+norma_WSI = extraer_valor_norma(df_a, "WSI")
 norma_conductividad = extraer_valor_norma(df_a, "Conductividad eléctrica")
 norma_corrosion = extraer_valor_norma(df_a, "Corrosion")
 norma_conteo = extraer_valor_norma(df_a, "Código ISO >= 30 micras") or "IP_565"
@@ -379,6 +381,7 @@ celdas_float = {
     norma_pto_hum: celda_pto_hum,
     norma_azufre: celda_azufre,
     norma_aromaticos: celda_aromaticos,
+    norma_WSI: celda_WSI
 }
 
 if isinstance(celda_naftalenos, (float, int)):
@@ -390,7 +393,7 @@ celdas_int = {
     norma_conteo: celda_I_30,
     norma_gomas: celda_gomas,
     norma_MSEP: celda_MSEP,
-    norma_conductividad: celda_conductividad,
+    norma_conductividad: celda_conductividad
 }
 
 plantilla, normas_acreditadas = evaluar_acreditacion_y_plantilla(df_alcance, fecha_hoy, celdas_float, celdas_int)
@@ -418,6 +421,7 @@ celda_antioxidante_2 = fmt_num(celda_antioxidante, 1)
 celda_aromaticos_2 = fmt_num(celda_aromaticos, 1)
 celda_naftalenos_2 = fmt_num(celda_naftalenos, 2)
 celda_mercaptanes_2 = fmt_num(celda_mercaptanes, 4)
+celda_WSI_2 = fmt_num(celda_WSI, 1)
 
 # Azufre con decimales variables
 if isinstance(celda_azufre, (float, int)):
@@ -483,6 +487,19 @@ if norma_aromaticos == "ASTM_D_1319":
 elif norma_aromaticos == "ASTM_D_6379":
     esp_arom = "26,5"
     tot = "totales (% vol.)"
+
+# Índice de separación de agua (MSEP o WSI)
+
+if norma_MSEP == "ASTM_D_3948":
+    T_agua = "MSEP"
+    n_agua = norma_MSEP
+    celda_agua = celda_MSEP
+    esp_agua = "70"    
+elif norma_WSI == "ASTM_D_8073"
+    T_agua = "WSI"
+    n_agua = norma_WSI
+    celda_agua = celda_WSI
+    esp_agua = "88"
 
 # =========================
 # MERGE DICT (igual a tu template)
@@ -577,8 +594,10 @@ merge = {
     "gomas": str(celda_gomas),
     "n_gomas": (norma_gomas or "").replace("_", " "),
 
-    "MSEP": str(celda_MSEP),
-    "n_MSEP": (norma_MSEP or "").replace("_", " "),
+    "agua": str(celda_agua),
+    "n_agua": (norma_agua or "").replace("_", " "),
+    "T_agua": T_agua,
+    "esp_agua": esp_agua,
 
     "conductividad": str(celda_conductividad),
     "n_cond": (norma_conductividad or "").replace("_", " "),
@@ -623,7 +642,7 @@ if plantilla == PLANTILLA_OUA:
     mark(norma_naftalenos, "naft")
     mark(norma_corrosion, "corr")
     mark(norma_gomas, "gom")
-    mark(norma_MSEP, "MS")
+    mark(norma_agua, "AG")
     mark(norma_conductividad, "cond")
 
 # =========================
