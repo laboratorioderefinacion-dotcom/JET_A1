@@ -642,7 +642,7 @@ if plantilla == PLANTILLA_OUA:
     mark(norma_naftalenos, "naft")
     mark(norma_corrosion, "corr")
     mark(norma_gomas, "gom")
-    mark(norma_agua, "AG")
+    mark(n_agua, "AG")
     mark(norma_conductividad, "cond")
 
 # =========================
