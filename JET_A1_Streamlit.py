@@ -595,7 +595,7 @@ merge = {
     "n_gomas": (norma_gomas or "").replace("_", " "),
 
     "agua": str(celda_agua),
-    "n_agua": (norma_agua).replace("_", " "),
+    "n_agua": (n_agua).replace("_", " "),
     "T_agua": T_agua,
     "esp_agua": esp_agua,
 
