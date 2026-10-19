@@ -495,7 +495,7 @@ if norma_MSEP == "ASTM_D_3948":
     n_agua = norma_MSEP
     celda_agua = celda_MSEP
     esp_agua = "70"    
-elif norma_WSI == "ASTM_D_8073"
+elif norma_WSI == "ASTM_D_8073":
     T_agua = "WSI"
     n_agua = norma_WSI
     celda_agua = celda_WSI
